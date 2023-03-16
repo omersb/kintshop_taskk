@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 const adresAdd = () => {
 	const {
-		postAdres,
+    putAdres,
 		getCountries,
 		countries,
 		getIl,
@@ -32,10 +32,10 @@ const adresAdd = () => {
 		vkn: "",
 		company_name: "",
 		vergi_dairesi: "",
-		e_fatura_mukellefiyim: false,
+		e_fatura_mukellefiyim: "",
 		pasaport_no: "",
-		is_active: false,
-		is_current: false,
+		is_active: "",
+		is_current: "",
 		posta_kodu: "",
 		fatura_type: "",
 	});
@@ -49,13 +49,12 @@ const adresAdd = () => {
 	const router = useRouter();
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		postAdres(adresData);
+		putAdres(adresData);
 		router.push("/table");
 	};
 
-	// console.log( adresData);
-
 	useEffect(() => {
+    putAdres();
 		getCountries();
 		getIl();
 		getIlce();

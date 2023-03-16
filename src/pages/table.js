@@ -1,10 +1,9 @@
 import { AdressContext } from "@/context/AdressContext";
 import Link from "next/link";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 const table = () => {
-	const [openTab, setOpenTab] = useState("");
-	const { adres, getAdres, postAdres, deletAdres } = useContext(AdressContext);
+	const { adres, getAdres, deletAdres } = useContext(AdressContext);
 
 	useEffect(() => {
 		getAdres();
@@ -12,7 +11,7 @@ const table = () => {
 
 	return (
 		<>
-			<table className="container mx-auto border table table-striped">
+			<table className="container table table-hover border align-middle mt-4 mx-auto">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -36,8 +35,12 @@ const table = () => {
 						<th scope="col">is_current</th>
 						<th scope="col">Posta Kodu</th>
 						<th scope="col">Fatura Tipi</th>
-						<th scope="col">
-							<Link className="btn btn-primary" type="button" href="/adresAdd">
+						<th scope="col" colSpan={2}>
+							<Link
+								className="btn btn-primary btn-lg ms-2"
+								type="button"
+								href="/adresAdd"
+							>
 								Adres Ekle
 							</Link>
 						</th>
@@ -70,9 +73,9 @@ const table = () => {
 									<td>{item.posta_kodu}</td>
 									<td>{item.fatura_type}</td>
 									<th scope="col">
-										<button type="button" className="btn btn-success">
+										<Link type="button" href="/adresUpdate" className="btn btn-success">
 											Güncelle
-										</button>
+										</Link>
 									</th>
 									<th scope="col">
 										<button
@@ -88,12 +91,6 @@ const table = () => {
 						))}
 				</tbody>
 			</table>
-
-			<div className="d-flex align-items-center flex-column">
-				{openTab === 1 && (
-					<AdresAdd setOpenTab={setOpenTab} method={postAdres} />
-				)}
-			</div>
 		</>
 	);
 };

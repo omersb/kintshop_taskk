@@ -49,7 +49,7 @@ export const AdressContextProvider = ({ children }) => {
 
 			await axios(config)
 				.then(function (res) {
-					// console.log(res);
+					console.log(res);
 					setIl(res.data.data);
 				})
 				.catch(function (error) {
@@ -71,7 +71,7 @@ export const AdressContextProvider = ({ children }) => {
 
 			await axios(config)
 				.then(function (res) {
-					// console.log(res);
+					console.log(res);
 					setIlce(res.data.data);
 				})
 				.catch(function (error) {
@@ -160,7 +160,6 @@ export const AdressContextProvider = ({ children }) => {
 				data: data,
 			};
 			// console.log(config);
-
 			const res = await axios(`${baseUrl}/address/`, config);
 			console.log(res);
 			getAdres();

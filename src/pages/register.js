@@ -27,7 +27,7 @@ const register = () => {
 
 	return (
 		<>
-			<div className="d-flex">
+			<div className="d-flex ">
 				<div className="w-50">
 					<Image
 						src="https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_960_720.jpg"
@@ -37,11 +37,11 @@ const register = () => {
 					/>
 				</div>
 				<form
-					className="p-2 flex-shrink-1 m-auto card w-25"
+					className="card container m-auto mx-5 "
 					method="post"
 					onSubmit={handleSubmit}
 				>
-					<h1>Kayıt Ol</h1>
+					<h1 className="text-center m-2">Kayıt Ol</h1>
 					<div className="mb-3">
 						<label htmlFor="first_name" className="form-label">
 							Adı
@@ -111,17 +111,7 @@ const register = () => {
 							onChange={handleChange}
 						/>
 					</div>
-					<div className="mb-3 form-check">
-						<input
-							type="checkbox"
-							className="form-check-input"
-							id="exampleCheck1"
-						/>
-						<label className="form-check-label" htmlFor="exampleCheck1">
-							Beni hatırla
-						</label>
-					</div>
-					<button type="submit" className="btn btn-primary w-25">
+					<button type="submit" className="btn btn-primary btn-lg mb-2 mx-auto">
 						Onayla
 					</button>
 				</form>
