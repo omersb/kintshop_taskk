@@ -1,24 +1,14 @@
-import AdresAdd from "@/components/AdresAdd";
 import { AdressContext } from "@/context/AdressContext";
+import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 
 const table = () => {
 	const [openTab, setOpenTab] = useState("");
-	const {
-		adres,
-		getAdres,
-		getCountries,
-		getIl,
-		getIlce,
-		getMahallekoyler,
-		getVergidairesi,
-		postAdres,
-		deletAdres,
-	} = useContext(AdressContext);
+	const { adres, getAdres, postAdres, deletAdres } = useContext(AdressContext);
 
 	useEffect(() => {
 		getAdres();
-	}, [adres]);
+	}, []);
 
 	return (
 		<>
@@ -47,23 +37,9 @@ const table = () => {
 						<th scope="col">Posta Kodu</th>
 						<th scope="col">Fatura Tipi</th>
 						<th scope="col">
-							<button
-								className="btn btn-primary"
-								type="button"
-								// data-bs-toggle="modal"
-								// data-bs-target="#staticBackdrop"
-								onClick={(e) => {
-									e.preventDefault();
-									setOpenTab(1);
-									getCountries();
-									getIl();
-									getIlce();
-									getMahallekoyler();
-									getVergidairesi();
-								}}
-							>
+							<Link className="btn btn-primary" type="button" href="/adresAdd">
 								Adres Ekle
-							</button>
+							</Link>
 						</th>
 					</tr>
 				</thead>
@@ -75,10 +51,10 @@ const table = () => {
 									<th scope="row">{item.id}</th>
 									<td>{item.owner}</td>
 									<td>{item.title}</td>
-									<td>{item.country.name}</td>
-									<td>{item.il.name}</td>
-									<td>{item.ilce.name}</td>
-									<td>{item.mahalle_koy.name}</td>
+									<td>{item.country?.name}</td>
+									<td>{item.il?.name}</td>
+									<td>{item.ilce?.name}</td>
+									<td>{item.mahalle_koy?.name}</td>
 									<td>{item.street_address}</td>
 									<td>{item.first_name}</td>
 									<td>{item.last_name}</td>
@@ -86,7 +62,7 @@ const table = () => {
 									<td>{item.tckn}</td>
 									<td>{item.vkn}</td>
 									<td>{item.company_name}</td>
-									<td>{item.vergi_dairesi.name}</td>
+									<td>{item.vergi_dairesi?.name}</td>
 									<td>{item.e_fatura_mukellefiyim ? "Evet" : "Hayır"}</td>
 									<td>{item.pasaport_no}</td>
 									<td>{item.is_active ? "Evet" : "Hayır"}</td>

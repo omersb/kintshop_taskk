@@ -23,11 +23,11 @@ export const AdressContextProvider = ({ children }) => {
 				url: `${baseUrl}/countries/`,
 				headers: { Authorization: `Bearer ${token}` },
 			};
-			console.log(config);
+			// console.log(config);
 
 			await axios(config)
 				.then(function (res) {
-					console.log(res);
+					// console.log(res);
 					setCountries(res.data.data);
 				})
 				.catch(function (error) {
@@ -45,11 +45,11 @@ export const AdressContextProvider = ({ children }) => {
 				url: `${baseUrl}/iller/`,
 				headers: { Authorization: `Bearer ${token}` },
 			};
-			console.log(config);
+			// console.log(config);
 
 			await axios(config)
 				.then(function (res) {
-					console.log(res);
+					// console.log(res);
 					setIl(res.data.data);
 				})
 				.catch(function (error) {
@@ -67,11 +67,11 @@ export const AdressContextProvider = ({ children }) => {
 				url: `${baseUrl}/ilceler/`,
 				headers: { Authorization: `Bearer ${token}` },
 			};
-			console.log(config);
+			// console.log(config);
 
 			await axios(config)
 				.then(function (res) {
-					console.log(res);
+					// console.log(res);
 					setIlce(res.data.data);
 				})
 				.catch(function (error) {
@@ -89,11 +89,11 @@ export const AdressContextProvider = ({ children }) => {
 				url: `${baseUrl}/mahallekoyler/`,
 				headers: { Authorization: `Bearer ${token}` },
 			};
-			console.log(config);
+			// console.log(config);
 
 			await axios(config)
 				.then(function (res) {
-					console.log(res);
+					// console.log(res);
 					setMahallekoyler(res.data.data);
 				})
 				.catch(function (error) {
@@ -111,11 +111,11 @@ export const AdressContextProvider = ({ children }) => {
 				url: `${baseUrl}/vergi-dairesi/`,
 				headers: { Authorization: `Bearer ${token}` },
 			};
-			console.log(config);
+			// console.log(config);
 
 			await axios(config)
 				.then(function (res) {
-					console.log(res);
+					// console.log(res);
 					setVergidairesi(res.data.data);
 				})
 				.catch(function (error) {
@@ -159,7 +159,7 @@ export const AdressContextProvider = ({ children }) => {
 				},
 				data: data,
 			};
-			console.log(config);
+			// console.log(config);
 
 			const res = await axios(`${baseUrl}/address/`, config);
 			console.log(res);
