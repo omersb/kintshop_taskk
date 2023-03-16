@@ -24,19 +24,16 @@ const login = () => {
 	return (
 		<>
 			<div className="d-flex">
-				<div className="w-50">
+				<div className="w-50 ">
 					<Image
+						className="img-responsive"
 						src="https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_960_720.jpg"
 						width={1066}
 						height={970}
 						alt=""
 					/>
 				</div>
-				<form
-					className="p-2 flex-shrink-1 m-auto"
-					method="post"
-					onSubmit={handleSubmit}
-				>
+				<form className="p-5 m-auto card" method="post" onSubmit={handleSubmit}>
 					<h1>Giriş Yap</h1>
 					<div className="mb-3">
 						<label htmlFor="email" className="form-label">
@@ -75,9 +72,15 @@ const login = () => {
 							Beni hatırla
 						</label>
 					</div>
-					<button type="submit" className="btn btn-primary">
-						Onayla
+					<button type="submit" className="btn btn-primary ">
+						Giriş
 					</button>
+					<p>
+						kayıtlı değilseniz
+						<button type="button" className="btn btn-outline-light text-primary">
+							lütfen burayı tıklayın
+						</button>
+					</p>
 				</form>
 			</div>
 		</>

@@ -12,11 +12,13 @@ const table = () => {
 		getIlce,
 		getMahallekoyler,
 		getVergidairesi,
+		postAdres,
+		deletAdres,
 	} = useContext(AdressContext);
 
 	useEffect(() => {
 		getAdres();
-	}, []);
+	}, [adres]);
 
 	return (
 		<>
@@ -97,7 +99,11 @@ const table = () => {
 										</button>
 									</th>
 									<th scope="col">
-										<button type="button" className="btn btn-danger">
+										<button
+											type="button"
+											className="btn btn-danger"
+											onClick={() => deletAdres(item.id)}
+										>
 											Sil
 										</button>
 									</th>
@@ -108,7 +114,9 @@ const table = () => {
 			</table>
 
 			<div className="d-flex align-items-center flex-column">
-				{openTab === 1 && <AdresAdd setOpenTab={setOpenTab} />}
+				{openTab === 1 && (
+					<AdresAdd setOpenTab={setOpenTab} method={postAdres} />
+				)}
 			</div>
 		</>
 	);

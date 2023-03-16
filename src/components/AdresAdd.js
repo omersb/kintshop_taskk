@@ -13,23 +13,23 @@ const AdresAdd = ({ setOpenTab }) => {
 	} = useContext(AdressContext);
 
 	const [adresData, setAdresData] = useState({
-		owner: "",
+		owner: 0,
 		title: "",
-		country: "",
-		il: "",
-		ilce: "",
-		mahalle_koy: "",
+		country: 0,
+		il: 0,
+		ilce: 0,
+		mahalle_koy: 0,
 		street_address: "",
 		first_name: "",
 		mobile_phone: "",
 		tckn: "",
 		vkn: "",
 		company_name: "",
-		vergi_dairesi: "",
-		e_fatura_mukellefiyim: "",
+		vergi_dairesi: 0,
+		e_fatura_mukellefiyim: false,
 		pasaport_no: "",
-		is_active: "",
-		is_current: "",
+		is_active: false,
+		is_current: false,
 		posta_kodu: "",
 		fatura_type: "",
 	});
@@ -45,7 +45,7 @@ const AdresAdd = ({ setOpenTab }) => {
 		postAdres(adresData);
 		getAdres();
 		setOpenTab(false);
-	};	
+	};
 
 	return (
 		<div className="tab-content" id="pills-tabContent ">
@@ -69,7 +69,7 @@ const AdresAdd = ({ setOpenTab }) => {
 								id="owner"
 								name="owner"
 								aria-describedby="emailHelp"
-								value={adresData.owner}
+								value={parseInt(adresData.owner)}
 								onChange={handleChange}
 							/>
 						</div>
@@ -149,7 +149,7 @@ const AdresAdd = ({ setOpenTab }) => {
 								aria-label="Default select example "
 								id="country"
 								name="country"
-								value={adresData.country}
+								value={parseFloat(adresData.country)}
 								onChange={handleChange}
 							>
 								<option selected>Ülke seçiniz</option>
@@ -171,7 +171,7 @@ const AdresAdd = ({ setOpenTab }) => {
 								aria-label="Default select example "
 								id="il"
 								name="il"
-								value={adresData.il}
+								value={parseFloat(adresData.il)}
 								onChange={handleChange}
 							>
 								<option selected>İl seçiniz</option>
@@ -193,7 +193,7 @@ const AdresAdd = ({ setOpenTab }) => {
 								aria-label="Default select example "
 								id="ilce"
 								name="ilce"
-								value={adresData.ilce}
+								value={parseFloat(adresData.ilce)}
 								onChange={handleChange}
 							>
 								<option selected>İlçe seçiniz</option>
@@ -215,7 +215,7 @@ const AdresAdd = ({ setOpenTab }) => {
 								aria-label="Default select example "
 								id="mahalle_koy"
 								name="mahalle_koy"
-								value={adresData.mahalle_koy}
+								value={parseFloat(adresData.mahalle_koy)}
 								onChange={handleChange}
 							>
 								<option selected>Mahalle/Köy seçiniz</option>

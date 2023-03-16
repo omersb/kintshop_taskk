@@ -126,7 +126,6 @@ export const AdressContextProvider = ({ children }) => {
 		}
 	};
 
-
 	const getAdres = async () => {
 		const token = sessionStorage.getItem("accessToken");
 		try {
@@ -152,10 +151,58 @@ export const AdressContextProvider = ({ children }) => {
 		const token = sessionStorage.getItem("accessToken");
 		try {
 			const config = {
-				headers: { Authorization: `Bearer ${token}` },
+				method: "post",
+				maxBodyLength: Infinity,
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
 				data: data,
 			};
-			const res = await axios.post(`${baseUrl}/address/`, config);
+			console.log(config);
+
+			const res = await axios(`${baseUrl}/address/`, config);
+			console.log(res);
+			getAdres();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const putAdres = async (data) => {
+		const token = sessionStorage.getItem("accessToken");
+		try {
+			const config = {
+				method: "put",
+				maxBodyLength: Infinity,
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+				data: data,
+			};
+			console.log(config);
+
+			const res = await axios(`${baseUrl}/address/${data.id}/`, config);
+			console.log(res);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const deletAdres = async (id) => {
+		const token = sessionStorage.getItem("accessToken");
+		try {
+			const config = {
+				method: "delete",
+				maxBodyLength: Infinity,
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+			};
+
+			const res = await axios(`${baseUrl}/address/${id}/`, config);
 			console.log(res);
 		} catch (error) {
 			console.log(error);
@@ -176,6 +223,8 @@ export const AdressContextProvider = ({ children }) => {
 		mahallekoyler,
 		getVergidairesi,
 		vergidairesi,
+		putAdres,
+		deletAdres,
 	};
 
 	return (

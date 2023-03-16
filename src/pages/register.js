@@ -37,11 +37,11 @@ const register = () => {
 					/>
 				</div>
 				<form
-					className="p-2 flex-shrink-1 m-auto"
+					className="p-2 flex-shrink-1 m-auto card w-25"
 					method="post"
 					onSubmit={handleSubmit}
 				>
-						<h1>Kayıt Ol</h1>
+					<h1>Kayıt Ol</h1>
 					<div className="mb-3">
 						<label htmlFor="first_name" className="form-label">
 							Adı
@@ -121,7 +121,7 @@ const register = () => {
 							Beni hatırla
 						</label>
 					</div>
-					<button type="submit" className="btn btn-primary">
+					<button type="submit" className="btn btn-primary w-25">
 						Onayla
 					</button>
 				</form>
