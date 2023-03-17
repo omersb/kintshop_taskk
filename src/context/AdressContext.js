@@ -210,7 +210,7 @@ export const AdressContextProvider = ({ children }) => {
 			console.log(error);
 		}
 	};
-	
+
 	const deletAdres = async (id) => {
 		const token = sessionStorage.getItem("accessToken");
 		try {

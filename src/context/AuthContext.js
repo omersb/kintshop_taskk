@@ -40,40 +40,43 @@ export const AuthContextProvider = ({ children }) => {
 				setUserData(rest.data.access);
 				router.push("/table");
 			}
+			console.log(rest);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	// const logout = async () => {
-	// 	const token = sessionStorage.getItem("accessToken");
-	// 	const refToken = sessionStorage.getItem("refreshToken");
-	// 	try {
-	// 		const config = {
-	// 			method: "post",
-	// 			maxBodyLength: Infinity,
-	// 			headers: {
-	// 				Authorization: `Bearer ${token}`,
-	// 				"refresh-token": refToken,
-	// 			},
-	// 		};
-	// 		console.log(config);
-	// 		// tokenlar silinir
-	// 		const res = await axios(`${baseUrl}/logout/`, config);
-	// 		sessionStorage.removeItem("accessToken");
-	// 		sessionStorage.removeItem("refreshToken");
-	// 		console.log(res);
-	// 		// kullanıcıyı login sayfasına yönlendiriyoruz
-	// 		window.location.href = "/login";
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
+	const logout = async () => {
+		const token = sessionStorage.getItem("accessToken");
+		const refToken = sessionStorage.getItem("refreshToken");
+		try {
+			const config = {
+				method: "post",
+				maxBodyLength: Infinity,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+				data: { refresh: `${refToken}` },
+			};
+			console.log(config);
+			// tokenlar silinir
+			const res = await axios(`${baseUrl}/logout/`, config);
+			if (res.status === 205) {
+				sessionStorage.removeItem("accessToken");
+				sessionStorage.removeItem("refreshToken");
+			}
+			console.log(res);
+			// kullanıcıyı login sayfasına yönlendiriyoruz
+			window.location.href = "/login";
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const value = {
 		register,
 		login,
-		// logout,
+		logout,
 		userData,
 	};
 

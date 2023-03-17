@@ -5,12 +5,12 @@ import React, { useContext } from "react";
 import { HiUserCircle } from "react-icons/hi";
 
 const Navbar = () => {
-	// const { logout, userData } = useContext(AuthContext);
+	const { logout, userData } = useContext(AuthContext);
 	// const router = useRouter();
-	// const handleLogout = () => {
-	// 	logout();
-	// 	// router.push("/login");
-	// };
+	const handleLogout = () => {
+		logout();
+		// router.push("/login");
+	};
 	return (
 		<nav className="navbar navbar-expand-lg bg-dark text-white ">
 			<div className="container-fluid d-flex">
@@ -30,7 +30,7 @@ const Navbar = () => {
 					>
 						<HiUserCircle size="30" />
 					</a>
-					<ul className="dropdown-menu">
+					{/* <ul className="dropdown-menu">
 						<li>
 							<Link className="dropdown-item" href="/login">
 								Giriş Yap
@@ -41,8 +41,8 @@ const Navbar = () => {
 								Kayıt Ol
 							</Link>
 						</li>
-					</ul>
-					{/* {userData ? (
+					</ul> */}
+					{userData ? (
 						<ul className="dropdown-menu">
 							<li className="dropdown-item text-center p-2">Hoşgeldiniz</li>
 							<li>
@@ -64,7 +64,7 @@ const Navbar = () => {
 								</Link>
 							</li>
 						</ul>
-					)} */}
+					)}
 				</li>
 			</div>
 		</nav>
