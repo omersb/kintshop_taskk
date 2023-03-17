@@ -1,13 +1,28 @@
+import Paginate from "@/components/Paginate";
 import { AdressContext } from "@/context/AdressContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
+import { Nav } from "react-bootstrap";
 
 const table = () => {
 	const [forAdres, setForAdres] = useState(false);
 	// const [page, setPage] = useState(1)
 	const { adres, getAdres, deletAdres, getPageAdres } =
 		useContext(AdressContext);
+
+	const [currentPage, setCurrentPage] = useState(1);
+	const [adresPerPage] = useState(10);
+	const indexOfLastAdres = currentPage * adresPerPage;
+	const indexOfFirstAdres = indexOfLastAdres - adresPerPage;
+	const currentAdres = adres.slice(indexOfFirstAdres, indexOfLastAdres);
+	const totalPages = Math.ceil(adres.length / adresPerPage);
+
+	// console.log("currentPage", currentPage);
+	// console.log("indexOfLastAdres", indexOfLastAdres);
+	// console.log("indexOfFirstAdres", indexOfFirstAdres);
+	// console.log("currentAdres", currentAdres);
+	// console.log("totalPages", totalPages);
 
 	const handleDelete = (id) => {
 		deletAdres(id);
@@ -27,11 +42,14 @@ const table = () => {
 	useEffect(() => {
 		getAdres();
 	}, [forAdres]);
-	// console.log(forAdres);
-	// console.log(adres);
+	// console.log("forAdres", forAdres);
+	// console.log("adres", adres);
 	return (
 		<>
-			<table className="container table table-hover border align-middle mt-4 mx-auto">
+			<div className="mt-5 ms-5">
+				<Paginate pages={totalPages} setCurrentPage={setCurrentPage} />
+			</div>
+			<table className="container table table-hover border align-middle mt-2 mx-auto">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -67,8 +85,8 @@ const table = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{adres?.length > 0 &&
-						adres?.map((item, id) => (
+					{currentAdres?.length > 0 &&
+						currentAdres?.map((item, id) => (
 							<>
 								<tr key={id}>
 									<th scope="row">{item.id}</th>

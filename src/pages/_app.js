@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }) {
 	return (
 		<>
 			<AuthContextProvider>
-			<Navbar />
+				<Navbar />
 				<AdressContextProvider>
 					<Component {...pageProps} />
 				</AdressContextProvider>
