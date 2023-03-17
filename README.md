@@ -13,7 +13,7 @@
 * Bootstrap,
 
 <br>
-<p>Bu proje aldığım bir taskın kodalarıdır.</p>
+<p>Bu proje aldığım bir taskın kodlarıdır.</p>
 
 <br>
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
