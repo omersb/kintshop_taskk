@@ -32,10 +32,10 @@ const adresAdd = () => {
 		vkn: "",
 		company_name: "",
 		vergi_dairesi: "",
-		e_fatura_mukellefiyim: "",
+		e_fatura_mukellefiyim: false,
 		pasaport_no: "",
-		is_active: "",
-		is_current: "",
+		is_active: false,
+		is_current: false,
 		posta_kodu: "",
 		fatura_type: "",
 	});

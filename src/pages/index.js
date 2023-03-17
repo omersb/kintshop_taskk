@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
 	const { userData } = useContext(AuthContext);
-	console.log(userData);
 
 	const router = useRouter();
 	useEffect(() => {
@@ -18,7 +17,7 @@ export default function Home() {
 		} else {
 			router.push("/table");
 		}
-	}, [userData]);
+	}, []);
 
 	return (
 		<>

@@ -13,8 +13,6 @@ export const AdressContextProvider = ({ children }) => {
 
 	const baseUrl = "https://apidev.kintshop.com/api";
 
-	const isClient = typeof window === "object";
-
 	const getCountries = async () => {
 		const token = sessionStorage.getItem("accessToken");
 		try {
@@ -161,7 +159,7 @@ export const AdressContextProvider = ({ children }) => {
 			};
 			// console.log(config);
 			const res = await axios(`${baseUrl}/address/`, config);
-			console.log(res);
+			// console.log(res);
 			getAdres();
 		} catch (error) {
 			console.log(error);
@@ -185,27 +183,6 @@ export const AdressContextProvider = ({ children }) => {
 
 			const res = await axios(`${baseUrl}/address/${data.id}/`, config);
 			// console.log(res);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const getPageAdres = async (page = 1) => {
-		const token = sessionStorage.getItem("accessToken");
-		try {
-			const config = {
-				method: "get",
-				url: `${baseUrl}/address/?page=${page}`,
-				headers: { Authorization: `Bearer ${token}` },
-			};
-
-			await axios(config)
-				.then(function (res) {
-					setAdres(res.data.data);
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
 		} catch (error) {
 			console.log(error);
 		}
@@ -246,7 +223,6 @@ export const AdressContextProvider = ({ children }) => {
 		vergidairesi,
 		putAdres,
 		deletAdres,
-		getPageAdres,
 	};
 
 	return (

@@ -3,13 +3,10 @@ import { AdressContext } from "@/context/AdressContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { Nav } from "react-bootstrap";
 
 const table = () => {
 	const [forAdres, setForAdres] = useState(false);
-	// const [page, setPage] = useState(1)
-	const { adres, getAdres, deletAdres, getPageAdres } =
-		useContext(AdressContext);
+	const { adres, getAdres, deletAdres } = useContext(AdressContext);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [adresPerPage] = useState(10);

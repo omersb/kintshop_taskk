@@ -67,13 +67,13 @@ const login = () => {
 						Giriş
 					</button>
 					<p>
-						Kayıtlı değilseniz {" "}
+						Kayıtlı değilseniz{" "}
 						<Link
 							type="button"
 							href="/register"
 							className="btn-outline-light text-primary"
 						>
-							 lütfen burayı tıklayın
+							lütfen burayı tıklayın
 						</Link>
 					</p>
 				</form>

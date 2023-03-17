@@ -40,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
 				setUserData(rest.data.access);
 				router.push("/table");
 			}
-			console.log(rest);
+			// console.log(rest);
 		} catch (error) {
 			console.log(error);
 		}

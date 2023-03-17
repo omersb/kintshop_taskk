@@ -44,7 +44,9 @@ const Navbar = () => {
 					</ul> */}
 					{userData ? (
 						<ul className="dropdown-menu">
-							<li className="dropdown-item text-center p-2">Hoşgeldiniz</li>
+							<li>
+								<button className="dropdown-item">Hoşgeldiniz</button>
+							</li>
 							<li>
 								<button className="dropdown-item" onClick={handleLogout}>
 									Çıkış
