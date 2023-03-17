@@ -18,7 +18,7 @@ const adresAdd = () => {
 	} = useContext(AdressContext);
 
 	const [adresData, setAdresData] = useState({
-		owner: "",
+		owner: 306,
 		title: "",
 		country: "",
 		il: "",
@@ -40,12 +40,6 @@ const adresAdd = () => {
 		fatura_type: "",
 	});
 
-	// const handleChange = (e) => {
-	// 	e.preventDefault();
-	// 	const { id, value } = e.target;
-	// 	setAdresData({ ...adresData, [id]: value });
-	// };
-
 	const handleChange = (e) => {
 		const { id, type, value, checked } = e.target;
 		const newValue = type === "checkbox" ? checked : value;
@@ -59,7 +53,7 @@ const adresAdd = () => {
 		router.push("/table");
 	};
 
-	console.log(adresData);
+	// console.log(adresData);
 
 	useEffect(() => {
 		getCountries();
@@ -74,7 +68,7 @@ const adresAdd = () => {
 			<h1 className="text-center mt-4">Adres Ekle</h1>
 			<form className="d-flex m-2" method="post" onSubmit={handleSubmit}>
 				<div className="container">
-					<div className="mb-3">
+					<div className="mb-3 d-none">
 						<label htmlFor="owner" className="form-label">
 							Owner
 						</label>

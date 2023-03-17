@@ -49,7 +49,7 @@ export const AdressContextProvider = ({ children }) => {
 
 			await axios(config)
 				.then(function (res) {
-					console.log(res);
+					// console.log(res);
 					setIl(res.data.data);
 				})
 				.catch(function (error) {
@@ -71,7 +71,7 @@ export const AdressContextProvider = ({ children }) => {
 
 			await axios(config)
 				.then(function (res) {
-					console.log(res);
+					// console.log(res);
 					setIlce(res.data.data);
 				})
 				.catch(function (error) {
@@ -181,6 +181,7 @@ export const AdressContextProvider = ({ children }) => {
 				data: data,
 			};
 			console.log(config);
+			console.log(data.id);
 
 			const res = await axios(`${baseUrl}/address/${data.id}/`, config);
 			console.log(res);
@@ -189,6 +190,26 @@ export const AdressContextProvider = ({ children }) => {
 		}
 	};
 
+		const getPageAdres = async (page=1) => {
+			const token = sessionStorage.getItem("accessToken");
+			try {
+				const config = {
+					method: "get",
+					url: `${baseUrl}/address/?page=${page}`,
+					headers: { Authorization: `Bearer ${token}` },
+				};
+
+				await axios(config)
+					.then(function (res) {
+						setAdres(res.data.data);
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			} catch (error) {
+				console.log(error);
+			}
+		};
 	const deletAdres = async (id) => {
 		const token = sessionStorage.getItem("accessToken");
 		try {
@@ -224,6 +245,7 @@ export const AdressContextProvider = ({ children }) => {
 		vergidairesi,
 		putAdres,
 		deletAdres,
+		getPageAdres,
 	};
 
 	return (

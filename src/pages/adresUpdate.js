@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { AdressContext } from "@/context/AdressContext";
 import { useRouter } from "next/router";
 
-const adresAdd = () => {
+const adresAdd = ({ item }) => {
 	const {
-    putAdres,
+		putAdres,
 		getCountries,
 		countries,
 		getIl,
@@ -17,33 +17,35 @@ const adresAdd = () => {
 		vergidairesi,
 	} = useContext(AdressContext);
 
-	const [adresData, setAdresData] = useState({
-		owner: "",
-		title: "",
-		country: "",
-		il: "",
-		ilce: "",
-		mahalle_koy: "",
-		street_address: "",
-		first_name: "",
-		last_name: "",
-		mobile_phone: "",
-		tckn: "",
-		vkn: "",
-		company_name: "",
-		vergi_dairesi: "",
-		e_fatura_mukellefiyim: "",
-		pasaport_no: "",
-		is_active: "",
-		is_current: "",
-		posta_kodu: "",
-		fatura_type: "",
-	});
-
+	const [oneitem, setOneitem] = useState(JSON.parse(item));
+	const adresData = {
+		id: oneitem.id,
+		owner: oneitem.owner,
+		title: oneitem.title,
+		country: oneitem.country.id,
+		il: oneitem.il.id,
+		ilce: oneitem.ilce.id,
+		mahalle_koy: oneitem.mahalle_koy.id,
+		street_address: oneitem.street_address,
+		first_name: oneitem.first_name,
+		last_name: oneitem.last_name,
+		mobile_phone: oneitem.mobile_phone,
+		tckn: oneitem.tckn,
+		vkn: oneitem.vkn,
+		company_name: oneitem.company_name,
+		vergi_dairesi: oneitem.vergi_dairesi.id,
+		e_fatura_mukellefiyim: oneitem.e_fatura_mukellefiyim,
+		pasaport_no: oneitem.pasaport_no,
+		is_active: oneitem.is_active,
+		is_current: oneitem.is_current,
+		posta_kodu: oneitem.posta_kodu,
+		fatura_type: oneitem.fatura_type,
+	};
+	// console.log(adresData);
 	const handleChange = (e) => {
-		e.preventDefault();
-		const { id, value } = e.target;
-		setAdresData({ ...adresData, [id]: value });
+		const { id, type, value, checked } = e.target;
+		const newValue = type === "checkbox" ? checked : value;
+		setOneitem({ ...oneitem, [id]: newValue });
 	};
 
 	const router = useRouter();
@@ -53,8 +55,9 @@ const adresAdd = () => {
 		router.push("/table");
 	};
 
+	// console.log(JSON.parse(item));
+
 	useEffect(() => {
-    putAdres();
 		getCountries();
 		getIl();
 		getIlce();
@@ -67,7 +70,7 @@ const adresAdd = () => {
 			<h1 className="text-center mt-4">Adres Ekle</h1>
 			<form className="d-flex m-2" method="post" onSubmit={handleSubmit}>
 				<div className="container">
-					<div className="mb-3">
+					<div className="mb-3 d-none">
 						<label htmlFor="owner" className="form-label">
 							Owner
 						</label>
@@ -76,7 +79,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="owner"
 							name="owner"
-							value={adresData.owner}
+							value={oneitem.owner}
 							onChange={handleChange}
 						/>
 					</div>
@@ -89,7 +92,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="first_name"
 							name="first_name"
-							value={adresData.first_name}
+							value={oneitem.first_name}
 							onChange={handleChange}
 						/>
 					</div>
@@ -102,7 +105,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="last_name"
 							name="last_name"
-							value={adresData.last_name}
+							value={oneitem.last_name}
 							onChange={handleChange}
 						/>
 					</div>
@@ -115,7 +118,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="mobile_phone"
 							name="mobile_phone"
-							value={adresData.mobile_phone}
+							value={oneitem.mobile_phone}
 							onChange={handleChange}
 						/>
 					</div>
@@ -128,7 +131,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="tckn"
 							name="tckn"
-							value={adresData.tckn}
+							value={oneitem.tckn}
 							onChange={handleChange}
 						/>
 					</div>
@@ -141,7 +144,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="pasaport_no"
 							name="pasaport_no"
-							value={adresData.pasaport_no}
+							value={oneitem.pasaport_no}
 							onChange={handleChange}
 						/>
 					</div>
@@ -155,7 +158,7 @@ const adresAdd = () => {
 							id="title"
 							name="title"
 							aria-describedby="emailHelp"
-							value={adresData.title}
+							value={oneitem.title}
 							onChange={handleChange}
 						/>
 					</div>
@@ -170,10 +173,10 @@ const adresAdd = () => {
 							aria-label="Default select example "
 							id="country"
 							name="country"
-							value={adresData.country}
+							value={oneitem.country?.name}
 							onChange={handleChange}
 						>
-							<option selected>Ülke seçiniz</option>
+							<option selected>{oneitem.country?.name}</option>
 							{countries?.map((item) => (
 								<>
 									<option value={item.id} key={item.id}>
@@ -192,10 +195,10 @@ const adresAdd = () => {
 							aria-label="Default select example "
 							id="il"
 							name="il"
-							value={adresData.il}
+							value={oneitem.il?.name}
 							onChange={handleChange}
 						>
-							<option selected>İl seçiniz</option>
+							<option selected>{oneitem.il?.name}</option>
 							{il?.map((item) => (
 								<>
 									<option value={item.id} key={item.id}>
@@ -214,10 +217,10 @@ const adresAdd = () => {
 							aria-label="Default select example "
 							id="ilce"
 							name="ilce"
-							value={adresData.ilce}
+							value={oneitem.ilce?.name}
 							onChange={handleChange}
 						>
-							<option selected>İlçe seçiniz</option>
+							<option selected>{oneitem.ilce?.name}</option>
 							{ilce?.map((item) => (
 								<>
 									<option value={item.id} key={item.id}>
@@ -236,10 +239,10 @@ const adresAdd = () => {
 							aria-label="Default select example "
 							id="mahalle_koy"
 							name="mahalle_koy"
-							value={adresData.mahalle_koy}
+							value={oneitem.mahalle_koy?.name}
 							onChange={handleChange}
 						>
-							<option selected>Mahalle/Köy seçiniz</option>
+							<option selected>{oneitem.mahalle_koy?.name}</option>
 							{mahallekoyler?.map((item) => (
 								<>
 									<option value={item.id} key={item.id}>
@@ -258,7 +261,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="street_address"
 							name="street_address"
-							value={adresData.street_address}
+							value={oneitem.street_address}
 							onChange={handleChange}
 						/>
 					</div>
@@ -271,7 +274,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="posta_kodu"
 							name="posta_kodu"
-							value={adresData.posta_kodu}
+							value={oneitem.posta_kodu}
 							onChange={handleChange}
 						/>
 					</div>
@@ -286,7 +289,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="company_name"
 							name="company_name"
-							value={adresData.company_name}
+							value={oneitem.company_name}
 							onChange={handleChange}
 						/>
 					</div>
@@ -299,10 +302,10 @@ const adresAdd = () => {
 							aria-label="Default select example "
 							id="vergi_dairesi"
 							name="vergi_dairesi"
-							value={adresData.vergi_dairesi}
+							value={oneitem.vergi_dairesi?.name}
 							onChange={handleChange}
 						>
-							<option selected>Vergi Dairesi seçiniz</option>
+							<option selected>{oneitem.vergi_dairesi?.name}</option>
 							{vergidairesi?.map((item) => (
 								<>
 									<option value={item.id} key={item.id}>
@@ -321,7 +324,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="vkn"
 							name="vkn"
-							value={adresData.vkn}
+							value={oneitem.vkn}
 							onChange={handleChange}
 						/>
 					</div>
@@ -334,7 +337,8 @@ const adresAdd = () => {
 							type="checkbox"
 							id="e_fatura_mukellefiyim"
 							name="e_fatura_mukellefiyim"
-							value={adresData.e_fatura_mukellefiyim}
+							value={oneitem.e_fatura_mukellefiyim}
+							checked={oneitem.e_fatura_mukellefiyim}
 							onChange={handleChange}
 						/>
 					</div>
@@ -347,7 +351,7 @@ const adresAdd = () => {
 							className="form-control"
 							id="fatura_type"
 							name="fatura_type"
-							value={adresData.fatura_type}
+							value={oneitem.fatura_type}
 							onChange={handleChange}
 						/>
 					</div>
@@ -360,7 +364,8 @@ const adresAdd = () => {
 							type="checkbox"
 							id="is_active"
 							name="is_active"
-							value={adresData.is_active}
+							value={oneitem.is_active}
+							checked={oneitem.is_active}
 							onChange={handleChange}
 						/>
 					</div>
@@ -373,7 +378,8 @@ const adresAdd = () => {
 							type="checkbox"
 							id="is_current"
 							name="is_current"
-							value={adresData.is_current}
+							value={oneitem.is_current}
+							checked={oneitem.is_current}
 							onChange={handleChange}
 						/>
 					</div>
@@ -387,5 +393,13 @@ const adresAdd = () => {
 		</div>
 	);
 };
+
+export async function getServerSideProps({ query }) {
+	return {
+		props: {
+			item: query.state,
+		},
+	};
+}
 
 export default adresAdd;

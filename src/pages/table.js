@@ -1,14 +1,34 @@
 import { AdressContext } from "@/context/AdressContext";
 import Link from "next/link";
-import React, { useContext, useEffect } from "react";
+import { useRouter } from "next/router";
+import React, { useContext, useEffect, useState } from "react";
 
 const table = () => {
-	const { adres, getAdres, deletAdres } = useContext(AdressContext);
+	const [forAdres, setForAdres] = useState(false);
+	// const [page, setPage] = useState(1)
+	const { adres, getAdres, deletAdres, getPageAdres } =
+		useContext(AdressContext);
+
+	const handleDelete = (id) => {
+		deletAdres(id);
+		setForAdres(!forAdres);
+		getAdres();
+	};
+
+	const router = useRouter();
+
+	const handleUpdate = (item) => {
+		router.push({
+			pathname: "/adresUpdate",
+			query: { state: JSON.stringify(item) },
+		});
+	};
 
 	useEffect(() => {
 		getAdres();
-	}, []);
-
+	}, [forAdres]);
+	// console.log(forAdres);
+	console.log(adres);
 	return (
 		<>
 			<table className="container table table-hover border align-middle mt-4 mx-auto">
@@ -73,15 +93,19 @@ const table = () => {
 									<td>{item.posta_kodu}</td>
 									<td>{item.fatura_type}</td>
 									<th scope="col">
-										<Link type="button" href="/adresUpdate" className="btn btn-success">
+										<button
+											type="button"
+											className="btn btn-success"
+											onClick={() => handleUpdate(item)}
+										>
 											Güncelle
-										</Link>
+										</button>
 									</th>
 									<th scope="col">
 										<button
 											type="button"
 											className="btn btn-danger"
-											onClick={() => deletAdres(item.id)}
+											onClick={() => handleDelete(item.id)}
 										>
 											Sil
 										</button>

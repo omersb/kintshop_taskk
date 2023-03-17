@@ -8,8 +8,8 @@ import Script from "next/script";
 export default function App({ Component, pageProps }) {
 	return (
 		<>
-			<Navbar />
 			<AuthContextProvider>
+			<Navbar />
 				<AdressContextProvider>
 					<Component {...pageProps} />
 				</AdressContextProvider>

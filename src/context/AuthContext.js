@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-	const [adres, setAdres] = useState("");
-
 	const isClient = typeof window === "object";
 
 	const [userData, setUserData] = useState(
@@ -38,7 +36,7 @@ export const AuthContextProvider = ({ children }) => {
 			const rest = await axios.post(`${baseUrl}/login/`, loginData);
 			if (rest.status === 200) {
 				sessionStorage.setItem("accessToken", rest.data.access);
-				// sessionStorage.setItem("refreshToken", rest.data.refresh);
+				sessionStorage.setItem("refreshToken", rest.data.refresh);
 				setUserData(rest.data.access);
 				router.push("/table");
 			}
@@ -47,9 +45,29 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	};
 
+	const logout = async () => {
+		const token = sessionStorage.getItem("refreshToken");
+		try {
+			const config = {
+				method: "post",
+				maxBodyLength: Infinity,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			};
+
+			const res = await axios(`${baseUrl}/logout/`, config);
+			// if (res.status){sessionStorage.removeItem();}
+			console.log(res);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const value = {
 		register,
 		login,
+		logout,
 		userData,
 	};
 
