@@ -4,6 +4,7 @@ import { AuthContextProvider } from "@/context/AuthContext";
 import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Script from "next/script";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }) {
 	return (
