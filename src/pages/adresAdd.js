@@ -32,18 +32,24 @@ const adresAdd = () => {
 		vkn: "",
 		company_name: "",
 		vergi_dairesi: "",
-		e_fatura_mukellefiyim: false,
+		e_fatura_mukellefiyim: "",
 		pasaport_no: "",
-		is_active: false,
-		is_current: false,
+		is_active: "",
+		is_current: "",
 		posta_kodu: "",
 		fatura_type: "",
 	});
 
+	// const handleChange = (e) => {
+	// 	e.preventDefault();
+	// 	const { id, value } = e.target;
+	// 	setAdresData({ ...adresData, [id]: value });
+	// };
+
 	const handleChange = (e) => {
-		e.preventDefault();
-		const { id, value } = e.target;
-		setAdresData({ ...adresData, [id]: value });
+		const { id, type, value, checked } = e.target;
+		const newValue = type === "checkbox" ? checked : value;
+		setAdresData({ ...adresData, [id]: newValue });
 	};
 
 	const router = useRouter();
@@ -53,7 +59,7 @@ const adresAdd = () => {
 		router.push("/table");
 	};
 
-	// console.log( adresData);
+	console.log(adresData);
 
 	useEffect(() => {
 		getCountries();

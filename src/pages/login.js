@@ -21,7 +21,7 @@ const login = () => {
 		e.preventDefault();
 		login(loginData);
 	};
-	console.log(loginData);
+	// console.log(loginData);
 	return (
 		<>
 			<div className="d-flex">
