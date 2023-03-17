@@ -28,7 +28,7 @@ const table = () => {
 		getAdres();
 	}, [forAdres]);
 	// console.log(forAdres);
-	console.log(adres);
+	// console.log(adres);
 	return (
 		<>
 			<table className="container table table-hover border align-middle mt-4 mx-auto">

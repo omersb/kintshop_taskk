@@ -173,13 +173,13 @@ const adresAdd = ({ item }) => {
 							aria-label="Default select example "
 							id="country"
 							name="country"
-							value={oneitem.country?.name}
+							value={oneitem.country.name}
 							onChange={handleChange}
 						>
 							<option selected>{oneitem.country?.name}</option>
 							{countries?.map((item) => (
 								<>
-									<option value={item.id} key={item.id}>
+									<option value={oneitem.id} key={oneitem.id}>
 										{item.name}
 									</option>
 								</>

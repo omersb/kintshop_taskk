@@ -1,16 +1,16 @@
 import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { HiUserCircle } from "react-icons/hi";
 
 const Navbar = () => {
-	const { logout, userData } = useContext(AuthContext);
-	const router = useRouter();
-	const handleLogout = () => {
-		logout();
-		router.push("/login");
-	};
+	// const { logout, userData } = useContext(AuthContext);
+	// const router = useRouter();
+	// const handleLogout = () => {
+	// 	logout();
+	// 	// router.push("/login");
+	// };
 	return (
 		<nav className="navbar navbar-expand-lg bg-dark text-white ">
 			<div className="container-fluid d-flex">
@@ -30,17 +30,27 @@ const Navbar = () => {
 					>
 						<HiUserCircle size="30" />
 					</a>
-					{userData ? (
-						<>
-							<ul className="dropdown-menu">
-								<li className="ropdown-item">Hoşgeldiniz</li>
-								<li>
-									<button className="dropdown-item" onClick={() => logout()}>
-										Çıkış
-									</button>
-								</li>
-							</ul>
-						</>
+					<ul className="dropdown-menu">
+						<li>
+							<Link className="dropdown-item" href="/login">
+								Giriş Yap
+							</Link>
+						</li>
+						<li>
+							<Link className="dropdown-item" href="/register">
+								Kayıt Ol
+							</Link>
+						</li>
+					</ul>
+					{/* {userData ? (
+						<ul className="dropdown-menu">
+							<li className="dropdown-item text-center p-2">Hoşgeldiniz</li>
+							<li>
+								<button className="dropdown-item" onClick={handleLogout}>
+									Çıkış
+								</button>
+							</li>
+						</ul>
 					) : (
 						<ul className="dropdown-menu">
 							<li>
@@ -54,7 +64,7 @@ const Navbar = () => {
 								</Link>
 							</li>
 						</ul>
-					)}
+					)} */}
 				</li>
 			</div>
 		</nav>

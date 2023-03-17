@@ -45,29 +45,35 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	};
 
-	const logout = async () => {
-		const token = sessionStorage.getItem("refreshToken");
-		try {
-			const config = {
-				method: "post",
-				maxBodyLength: Infinity,
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			};
-
-			const res = await axios(`${baseUrl}/logout/`, config);
-			// if (res.status){sessionStorage.removeItem();}
-			console.log(res);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	// const logout = async () => {
+	// 	const token = sessionStorage.getItem("accessToken");
+	// 	const refToken = sessionStorage.getItem("refreshToken");
+	// 	try {
+	// 		const config = {
+	// 			method: "post",
+	// 			maxBodyLength: Infinity,
+	// 			headers: {
+	// 				Authorization: `Bearer ${token}`,
+	// 				"refresh-token": refToken,
+	// 			},
+	// 		};
+	// 		console.log(config);
+	// 		// tokenlar silinir
+	// 		const res = await axios(`${baseUrl}/logout/`, config);
+	// 		sessionStorage.removeItem("accessToken");
+	// 		sessionStorage.removeItem("refreshToken");
+	// 		console.log(res);
+	// 		// kullanıcıyı login sayfasına yönlendiriyoruz
+	// 		window.location.href = "/login";
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
 
 	const value = {
 		register,
 		login,
-		logout,
+		// logout,
 		userData,
 	};
 
