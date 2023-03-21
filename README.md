@@ -1,11 +1,17 @@
 <h1>Hi I’m Ömer Said 👋. Welcome to Kintshop_Task</h1>
 
 <br>
+
 ![Kintshop](https://github.com/omersb/kintshop_taskk/blob/master/kintshop_task.gif?raw=true)
+
 <br>
+
 ![Kintshop](https://github.com/omersb/kintshop_taskk/blob/master/kintshop-1.jpg?raw=true)
+
 <br>
+
 ![Kintshop](https://github.com/omersb/kintshop_taskk/blob/master/kintshop-2.jpg?raw=true)
+
 <br>
 
 <h2>Libraries and Technologies I use</h2>
