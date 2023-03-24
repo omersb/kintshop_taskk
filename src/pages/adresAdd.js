@@ -53,8 +53,6 @@ const adresAdd = () => {
 		router.push("/table");
 	};
 
-	// console.log(adresData);
-
 	useEffect(() => {
 		getCountries();
 		getIl();
@@ -175,6 +173,7 @@ const adresAdd = () => {
 							onChange={handleChange}
 						>
 							<option selected>Ülke seçiniz</option>
+							{/* Bütün ülkeler için aşağıdaki kod */}
 							{countries?.map((item) => (
 								<>
 									<option value={item.id} key={item.id}>
@@ -219,13 +218,15 @@ const adresAdd = () => {
 							onChange={handleChange}
 						>
 							<option selected>İlçe seçiniz</option>
-							{ilce?.map((item) => (
-								<>
-									<option value={item.id} key={item.id}>
-										{item.name}
-									</option>
-								</>
-							))}
+							{ilce
+								?.filter((item) => item.il === parseInt(adresData.il))
+								.map((item) => (
+									<>
+										<option value={item.id} key={item.id}>
+											{item.name}
+										</option>
+									</>
+								))}
 						</select>
 					</div>
 					<div className="mb-3">
@@ -241,13 +242,15 @@ const adresAdd = () => {
 							onChange={handleChange}
 						>
 							<option selected>Mahalle/Köy seçiniz</option>
-							{mahallekoyler?.map((item) => (
-								<>
-									<option value={item.id} key={item.id}>
-										{item.name}
-									</option>
-								</>
-							))}
+							{mahallekoyler
+								?.filter((item) => item.ilce === parseInt(adresData.ilce))
+								.map((item) => (
+									<>
+										<option value={item.id} key={item.id}>
+											{item.name}
+										</option>
+									</>
+								))}
 						</select>
 					</div>
 					<div className="mb-3">

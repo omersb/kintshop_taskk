@@ -67,7 +67,7 @@ const adresAdd = ({ item }) => {
 
 	return (
 		<div className="card container m-auto mt-5">
-			<h1 className="text-center mt-4">Adres Ekle</h1>
+			<h1 className="text-center mt-4">Adres Güncelle</h1>
 			<form className="d-flex m-2" method="post" onSubmit={handleSubmit}>
 				<div className="container">
 					<div className="mb-3 d-none">
@@ -177,6 +177,7 @@ const adresAdd = ({ item }) => {
 							onChange={handleChange}
 						>
 							<option selected>{oneitem.country?.name}</option>
+							{/* Bütün ülkeler için aşağıdaki kod */}
 							{countries?.map((item) => (
 								<>
 									<option value={oneitem.id} key={oneitem.id}>
@@ -221,13 +222,15 @@ const adresAdd = ({ item }) => {
 							onChange={handleChange}
 						>
 							<option selected>{oneitem.ilce?.name}</option>
-							{ilce?.map((item) => (
-								<>
-									<option value={item.id} key={item.id}>
-										{item.name}
-									</option>
-								</>
-							))}
+							{ilce
+								?.filter((item) => item.il === parseInt(oneitem.il))
+								.map((item) => (
+									<>
+										<option value={item.id} key={item.id}>
+											{item.name}
+										</option>
+									</>
+								))}
 						</select>
 					</div>
 					<div className="mb-3">
@@ -243,13 +246,15 @@ const adresAdd = ({ item }) => {
 							onChange={handleChange}
 						>
 							<option selected>{oneitem.mahalle_koy?.name}</option>
-							{mahallekoyler?.map((item) => (
-								<>
-									<option value={item.id} key={item.id}>
-										{item.name}
-									</option>
-								</>
-							))}
+							{mahallekoyler
+								?.filter((item) => item.ilce === parseInt(oneitem.ilce))
+								.map((item) => (
+									<>
+										<option value={item.id} key={item.id}>
+											{item.name}
+										</option>
+									</>
+								))}
 						</select>
 					</div>
 					<div className="mb-3">
@@ -385,7 +390,7 @@ const adresAdd = ({ item }) => {
 					</div>
 					<div className="d-flex gap-2">
 						<button type="submit" className="btn btn-primary">
-							Ekle
+							Güncelle
 						</button>
 					</div>
 				</div>
