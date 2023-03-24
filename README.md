@@ -2,9 +2,16 @@
 
 <br>
 
-![Kintshop](https://github.com/omersb/kintshop_taskk/blob/master/kintshop-1.jpg?raw=true)
+![Kintshop](https://github.com/omersb/kintshop_taskk/blob/master/kintshop_task.gif?raw=true)
+
 <br>
+
+![Kintshop](https://github.com/omersb/kintshop_taskk/blob/master/kintshop-1.jpg?raw=true)
+
+<br>
+
 ![Kintshop](https://github.com/omersb/kintshop_taskk/blob/master/kintshop-2.jpg?raw=true)
+
 <br>
 
 <h2>Libraries and Technologies I use</h2>
@@ -15,12 +22,9 @@
 <br>
 <p>Bu proje aldığım bir taskın kodlarıdır.</p>
 
-<br>
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
 
 ```bash
 npm run dev
